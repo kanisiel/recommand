@@ -1,0 +1,28 @@
+<?
+$_zb_url = "http://자신의 계정/zboard/"; 
+$_zb_path = "/home/경로삽입/zboard/"; 
+include $_zb_path."outlogin.php";
+?>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=euc-kr">
+<title>제로보드</title>
+<meta name="generator" content="Namo WebEditor v5.0">
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<table border="1" width="983" cellpadding="0" cellspacing="0" bordercolordark="white" bordercolorlight="black">
+    <tr>
+        <td width="180">
+            <p><? print_outlogin("guru_log", 1, 10) ?></p>
+        </td>
+        <td width="180">
+            <p><? include("list1.php") ?></p>
+        </td>
+        <td width="615">
+	    <p><? include("list2.php") ?></p>
+        </td>
+    </tr>
+</table>
+<p></p>
+</body>
+</html>
