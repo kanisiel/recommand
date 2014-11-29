@@ -1,0 +1,6 @@
+<?
+localhost
+root
+apmsetup
+bbs
+?>

@@ -1,0 +1,13 @@
+script_zbLayer.php 파일하고 그림파일들 있죠?
+
+
+
+먼저 script_zbLayer.php 파일을 제로보드 폴더내의 script 폴더에 넣어주세요.
+
+그리고 나머지 그림파일들은 전부 제로보드 폴더내의 images 폴더에 넣어주세요.
+
+
+
+그럼 끝~ 쉽죠.?
+
+http://wooyu.net 토요무
