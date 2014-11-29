@@ -1,0 +1,32 @@
+<style type="text/css">
+
+BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:8pt; font-family:돋움; color:#939393;}
+
+A:link {text-decoration:none; color:#939393}
+A:visited {text-decoration:none; color:#939393}
+A:active {text-decoration:none; color:#939393}
+A:hover {text-decoration:none; color:#DDDCDC}
+
+
+.sm {font-family:tahoma;font-size:7pt;color:#939393}
+.style2 {
+	font-size: 12px;
+	color: #0C8B92;
+}
+.style4 {font-size: 12px; color: #666666; }
+</style>
+<table width="200" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="20"><span class="style2"><span class="sm"><img src=[dir]level.gif border=0 align=absmiddle />&nbsp;[level]&nbsp;&nbsp;&nbsp;<img src=[dir]point.gif border=0 align=absmiddle />&nbsp;[point]</span></span></td>
+  </tr>
+  <tr>
+    <td height="20"><span class="style2"><span class="style4">[memo]</span>샬롬! [name]&nbsp;님 반갑습니다.</span>[admin]</td>
+  </tr>
+  <tr>
+    <td height="25"><span class="style4">＊이름 클릭하시면 쪽지 볼수있어요.</span></td>
+  </tr>
+  
+  <tr>
+    <td height="20" align="right">[info]&nbsp;[logout]&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+</table>
