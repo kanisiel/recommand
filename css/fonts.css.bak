@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "나눔고딕";
+  src: local("나눔고딕 보통"),
+    url("fonts/NanumGothic.otf") format("opentype"),
+	url("fonts/NanumGothic.ttf") format("truetype");
+ }
+ @font-face {
+  font-family: "나눔고딕Bold";
+  src: local("나눔고딕 굵게"),
+    url("fonts/NanumGothicBold.otf") format("opentype"),
+	url("fonts/NanumGothicBold.ttf") format("truetype");
+ }
+ @font-face {
+  font-family: "나눔명조";
+  src: url("fonts/NanumMyeongjo.eot");
+  src: local("나눔명조 보통"),
+    url("fonts/NanumMyeongjo.woff") format("woff");
+ }
+ @font-face {
+  font-family: "나눔명조Bold";
+  src: url("fonts/NanumMyeongjoBold.eot");
+  src: local("나눔명조 굵게"),
+    url("fonts/NanumMyeongjoBold.woff") format("woff");
+ }
+ @font-face {
+  font-family: "나눔펜글씨";
+  src: url("fonts/NanumPen.eot");
+  src: local("나눔손글씨 펜 보통"),
+    url("fonts/NanumPen.woff") format("woff");
+ }
+ @font-face {
+  font-family: "나눔붓글씨";
+  src: url("fonts/NanumBrush.eot");
+  src: local("나눔손글씨 붓 보통"),
+    url("fonts/NanumBrush.woff") format("woff");
+ }
+ .topmenu { font-family: "나눔펜글씨"; color:#4a7dcb; font-size:20pt; }
+ .search { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:20pt; }
+ .bodymenu { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:36pt; }
+ .bottommenu { font-family: "나눔펜글씨"; color:#4a7dcb; font-size:18pt; }

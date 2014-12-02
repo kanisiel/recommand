@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>본문</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="css/fonts.css" media="all" rel="stylesheet" »
+      type="text/css" />
+<? 
+   $_zb_url = "http://kanisiel.kr.pe/bbs/"; 
+   $_zb_path = "H:/APM_Setup/htdocs/bbs/"; 
+   include $_zb_path."outlogin.php"; 
+?>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" valign=top>
+<table id="__01" width="1280" height="1025" border="0" cellpadding="0" cellspacing="0" align=center>
+	<tr height="119">
+		<td colspan="4">
+			<p align=center><img src="images/sample_03.gif" style="width:166px;height:89px;align:center;" alt=""></p>
+		</td>
+	</tr>
+	<tr height="50">
+		<td colspan="4" align=center>
+			<form>
+				<table id="search" width="50%" height=62 border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td style="border-style:solid;border-width:3px;border-color:#4a7dcb;"><input id="s" name="s" type="text" style="width:100%;height:100%;font-size:25px;border:0;margin:0px;padding:4px;'" cellpadding="0"></td>
+					<td class="search"  onmouseover="" style="width:70px;background:#4a7dcb;cursor:hand;" align=center>검색</td>
+				</tr>
+				</table>
+			</form>
+		</td>
+	</tr>
+	<tr height=62>
+		<td colspan="4">
+			<table id="menu" width="100%" height=62 border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="10" background="images/menu_left.gif"></td>
+				<td background="images/menu_bg.gif"><p class="bodymenu" align=left style="margin-left:10px;">영화&nbsp;&nbsp;&nbsp;공연&nbsp;&nbsp;&nbsp;맛집&nbsp;&nbsp;&nbsp;게임&nbsp;&nbsp;&nbsp;여행&nbsp;&nbsp;&nbsp;책</p></td>
+				<td width="150" background="images/menu_bg.gif"><p class="bodymenu" align=rignt>고객지원</p></td>
+				<td width="10"background="images/menu_right.gif"></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" valign=top>
+			<table id="body" width="100%" border="0" cellpadding="0" cellspacing="5" style="margin-top:20px">
+			<tr height="250">
+				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "베스트", "best", 10, 30) ?></td>
+				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "한식맛집 추천", "korean_food", 10, 30) ?></td>
+				<td rowspan="2" width="250" valign=top>
+					<table id="index_right" width="250" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+					<td style="border-style:solid;border-width:2px;border-radius:8px;" bgcolor="#f0f0f0"><? print_outlogin("naverstyle","1","10"); ?></td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="250">
+				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "한국영화 추천", "korean_movie", 10, 30) ?></td>
+				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "외국도서 추천", "foreign_book", 10, 30) ?></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr height="2">
+		<td colspan="4" valign=top background="images/bottom_bg.gif"></td>
+	</tr>
+	<tr>
+		<td valign=top><p class="bottommenu" align=center>이용약관&nbsp;&nbsp;&nbsp;개인정보취급방침&nbsp;&nbsp;&nbsp;이메일무단수집거부&nbsp;&nbsp;&nbsp;청소년정책</p></td>
+	</tr>
+</table>
+</body>
