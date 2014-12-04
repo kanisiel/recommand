@@ -11,32 +11,35 @@
 ?>
 </head>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" valign=top>
-<table id="__01" width="1280" height="1025" border="0" cellpadding="0" cellspacing="0" align=center>
+<table id="__01" width="1024" height="1025" border="0" cellpadding="0" cellspacing="0" align=center>
 	<tr height="119">
 		<td colspan="4">
 			<p align=center><img src="images/sample_03.gif" style="width:166px;height:89px;align:center;" alt=""></p>
 		</td>
 	</tr>
-	<tr height="50">
+	<tr height="30">
 		<td colspan="4" align=center>
-			<form>
-				<table id="search" width="50%" height=62 border="0" cellpadding="0" cellspacing="0">
+			<form id="search" method="post" action="search.php">
+				<table id="search" width="50%" height=30 border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td style="border-style:solid;border-width:3px;border-color:#4a7dcb;"><input id="s" name="s" type="text" style="width:100%;height:100%;font-size:25px;border:0;margin:0px;padding:4px;'" cellpadding="0"></td>
-					<td class="search"  onmouseover="" style="width:70px;background:#4a7dcb;cursor:hand;" align=center>검색</td>
+					<td style="border-style:solid;border-width:3px;border-color:#4a7dcb;"><input id="keyword" name="keyword" type="text" style="width:100%;height:100%;font-size:18px;border:0;margin:0px;padding:4px;'" cellpadding="0"></td>
+					<td class="search"  onmouseover="" style="width:50px;background:#4a7dcb;cursor:hand;" align=center>검색</td>
 				</tr>
 				</table>
 			</form>
 		</td>
 	</tr>
-	<tr height=62>
+	<tr height="10">
+		<td colspan="4"></td>
+	</tr>
+	<tr height="30">
 		<td colspan="4">
-			<table id="menu" width="100%" height=62 border="0" cellpadding="0" cellspacing="0">
+			<table id="menu" width="100%" height="30px" cellpadding="2" cellspacing="3" style="border-style:soild;border-width:1;border-radius:8px;border-color:#4a7dcb;background:#4a7dcb">
 			<tr>
-				<td width="10" background="images/menu_left.gif"></td>
-				<td background="images/menu_bg.gif"><p class="bodymenu" align=left style="margin-left:10px;">영화&nbsp;&nbsp;&nbsp;공연&nbsp;&nbsp;&nbsp;맛집&nbsp;&nbsp;&nbsp;게임&nbsp;&nbsp;&nbsp;여행&nbsp;&nbsp;&nbsp;책</p></td>
-				<td width="150" background="images/menu_bg.gif"><p class="bodymenu" align=rignt>고객지원</p></td>
-				<td width="10"background="images/menu_right.gif"></td>
+				<td width="10"></td>
+				<td><p class="bodymenu">영화</p></td><td ><p class="bodymenu">공연</p></td><td ><p class="bodymenu">맛집</p></td><td ><p class="bodymenu">게임</p></td><td ><p class="bodymenu">여행</p></td><td ><p class="bodymenu">책</p></td>
+				<td width="300"></td>
+				<td><p class="bodymenu">고객지원</p></td>
 			</tr>
 			</table>
 		</td>
