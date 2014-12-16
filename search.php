@@ -1,15 +1,29 @@
+<html>
+<head>
+<title>ë³¸ë¬¸</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+function getValue(id){
+	var x=document.getElementById(id);
+	var form=document.getElementById("link");
+	var input=form.keyword;
+	input.value=x.innerHTML;
+	form.submit();
+  }
+</script>
 <?
 	$_zb_url = "http://kanisiel.kr.pe/bbs/";
 	$_zb_path = "H:/APM_Setup/htdocs/bbs/";
 	include $_zb_path."outlogin.php"; 
 
-	//°Ë»öÇÏÁö ¾ÊÀ» °Ô½ÃÆÇ ¸®½ºÆ®
+	//ê²€ìƒ‰í•˜ì§€ ì•Šì„ ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸
 	$skip_board = "cugain_board_trashbox/cugain_board_guest"; 
 
-	//°Ë»ö¼­ºñ½º Å×ÀÌºí
+	//ê²€ìƒ‰ì„œë¹„ìŠ¤ í…Œì´ë¸”
 	$search_table = "zetyx_search_table";
 
-	//¹®ÀÚ¿­ Ä¡È¯ ÇÔ¼ö Á¤ÀÇ
+
+	//ë¬¸ìì—´ ì¹˜í™˜ í•¨ìˆ˜ ì •ì˜
 	function replace_string($source, $target) {
 		$extract_target = strtok($target, " ");
 		while($extract_target) {
@@ -21,7 +35,7 @@
 		return $source;
 	}
 
-	//db connection °Ë»ç
+	//db connection ê²€ì‚¬
 	if($connect == null)
 		$connect=dbconn();
 
@@ -29,20 +43,23 @@
 	$keykind[1]="memo";
 
 ?>
+</head>
+<body>
 <link href="css/fonts.css" media="all" rel="stylesheet" type="text/css" />
+<link href="css/stylesheet.css" media="all" rel="stylesheet" type="text/css" />
 <table id="search_top" width="100%" height="50" border="0" cellpadding="0" cellspacing="0" align=center>
 	<tr>
 		<td>
 		<form action=<?=$PHP_SELF?> method=post>
 		<table id="search_top1" width="1050" height="50" border="0" cellpadding="0" cellspacing="0" align=center>
 			<tr height="119">
-				<td width="100"><p align=center><img src="images/logo_s.gif" style="width:83px;height:45px;align:center;" alt=""></p></td>
+				<td width="100"><p align=center><a href="body.html" target="_self"><img src="images/logo_s.gif" style="width:83px;height:45px;align:center;" alt=""></a></p></td>
 				<td width="20"></td>
 				<td width="500">
 					<table id="search" width="500" height=30 border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td style="border-style:solid;border-width:3px;border-color:#4a7dcb;"><input id="keyword" name="keyword" type="text" style="width:100%;height:100%;font-size:18px;border:0;margin:0px;padding:4px;'" cellpadding="0" <? if($_POST["keyword"]){ ?> value=<? echo $_POST["keyword"]; } ?>></td>
-							<td class="search" onclick="javascript:submit()" style="width:50px;background:#4a7dcb;cursor:hand;" align=center><input class="search_button" type="button" style="width:50px;background:#4a7dcb;cursor:hand;border-width:0px;" onclick="javascript:submit()" value="°Ë»ö"></td>
+							<td class="search" onclick="javascript:submit()" style="width:50px;background:#4a7dcb;cursor:hand;" align=center><input class="search_button" type="button" style="width:50px;background:#4a7dcb;cursor:hand;border-width:0px;" onclick="javascript:submit()" value="ê²€ìƒ‰"></td>
 						</tr>
 					</table>
 				</td>
@@ -56,35 +73,41 @@
 	<tr height="1">
 		<td colspan="4" style="background:#4a7dcb"></td>
 	</tr>
-	<tr>
-		<td>
-		<table id="search_body" width="80%" height="80%" border="0" cellpadding="0" cellspacing="0" align=center>
+</table>
+<table id="search_body" width="100%" height="50" border="0" cellpadding="0" cellspacing="0" align=center>
+	<tr height="100">
+		<td valign="top">
+		<table id="search_body" width="100%" border="0" cellpadding="0" cellspacing="0" align=center valign=top>
 			<tr>
-				<td>
-				</td>
-			</tr>
-
-<?
- // DBÃ³¸®¿ë ÇÔ¼ö
+				<td valign="top">
+			<?
+ // DBì²˜ë¦¬ìš© í•¨ìˆ˜
  function affect_db($keywords){
-	//echo "select * from $search_table where keyword='".$keywords."';";
-	/*$table_result=mysql_query("select * from $search_table where keyword='".$keywords."';",$connect) or error(mysql_error());
-	if(mysql_num_rows($table_result)>0){
-		mysql_query("UPDATE $search_table SET amount=amount+1 WHERE keyword='".$keywords."' LIMIT 1;",$connect) or error(mysql_error());		
-	}else{
-		mysql_query("INSERT INTO  $search_table (`no`, `keyworld`, `amount`) VALUES ( NULL , '".$keywords."',  '1' );",$connect) or error(mysql_error());		
-	}*/
+	 global $search_table;
+	 global $connect;
+
+	$query = "select * from $search_table where keyworld=\"".$keywords."\";";
+	$table_result=mysql_query($query, $connect) or error(mysql_error());
+	if($table_result){
+		if(mysql_num_rows($table_result)){
+			mysql_query("UPDATE $search_table SET time=".time().", recent=recent+1 ,amount=amount+1 WHERE keyworld='".$keywords."' LIMIT 1;",$connect) or error(mysql_error());		
+		}else{
+			mysql_query("INSERT INTO  $search_table (`no`, `keyworld`, `time`, `amount`) VALUES ( NULL , '".$keywords."', ".time()." ,'1' );",$connect) or error(mysql_error());		
+		}
+	}
  }
- // ½ÇÁ¦ °Ë»öºÎºĞ
+
+
+ // ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 if($keyword) {
-	//ÇØ´ç °Ë»ö¾î·Î °Ë»öµÇ¾ú´ø ÀÌ·ÂÀÌ ÀÖ´ÂÁö °Ë»çÈÄ DB¿¡ ¹İ¿µ
+	//í•´ë‹¹ ê²€ìƒ‰ì–´ë¡œ ê²€ìƒ‰ë˜ì—ˆë˜ ì´ë ¥ì´ ìˆëŠ”ì§€ ê²€ì‚¬í›„ DBì— ë°˜ì˜
 	affect_db($keyword);
 
-	$comment_search=1;
+	$comment_search=0;
 	$s_que = "";
-	$extract_keyword = strtok($keyword, " "); // °ø¹é ÀÔ·Â½Ã OR ¿¬»êÀ» À§ÇÑ º¯¼ö
+	$extract_keyword = strtok($keyword, " "); // ê³µë°± ì…ë ¥ì‹œ OR ì—°ì‚°ì„ ìœ„í•œ ë³€ìˆ˜
 	while($extract_keyword) {
-		//°ø¹éºĞ¸®ÈÄ °Ë»ö ÀÌ·Â DB¿¡ ¹İ¿µ ( ³íÀÇÁß )
+		//ê³µë°±ë¶„ë¦¬í›„ ê²€ìƒ‰ ì´ë ¥ DBì— ë°˜ì˜ ( ë…¼ì˜ì¤‘ )
 		//affect_db($extract_keyword);
 		for($i=0;$i<=sizeof($keykind);$i++) {
 			if($keykind[$i]) {
@@ -112,52 +135,52 @@ if($keyword) {
 					}
 				}
 			}
-			$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
+			$table_name_result=mysql_query("select name, use_alllist, title from $admin_table order by name",$connect) or error(mysql_error());
 		}
 		$extract_keyword = strtok (" ");
 	}
-	echo "query : $s_que";
 }
 
 if($keyword&&$s_que ) {
+	$rows=0;
 	while($table_data=mysql_fetch_array($table_name_result)) {
+		$table_title=$table_data[title];
 		$table_name=$table_data[name];
 		if(!strstr($skip_board, $table_name)) {
 			if($table_data[use_alllist]) 
 				$file="zboard.php"; else $file="view.php";
 
-			// º»¹®
+			// ë³¸ë¬¸
 			//echo "select * from $t_board"."_$table_name $s_que";
 			$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
-?>
+			if(mysql_num_rows($result)>0){
+				$rows++;
+				echo "<br>";
 
-<br><br><br>
-
-&nbsp;&nbsp;<img src="btn2.jpg" width="11" height="11"> <a href=bbs/zboard.php?id=<?=$table_name?> target=_self><font size=2 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b></font></a><br>
-<?
-			while($data=mysql_fetch_array($result)) {
-				flush();
-				$data[subject] = replace_string($data[subject], $keyword);
+				while($data=mysql_fetch_array($result)) {
+					flush();
+					$data[subject] = replace_string($data[subject], $keyword);
 ?>
 
 &nbsp;&nbsp; <font style='font-size: 10pt'>[<?=stripslashes($data[name])?>]</font>
-<a href=bbs/<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_self><font style='font-size: 9pt'><?=$data[subject]?></font></a></b> 
-&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-<font color=666666 style="font-size: 9pt">(</font><font color=blue style="font-size: 9pt"><?=date("Y-m-d H:i:s",$data[reg_date])?></font> / <font color=green style="font-size: 9pt"><?=$data[ip]?>)</font>
+<a href=bbs/<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_self><font style='font-size: 9pt'><?=$data[subject]?></font></a></b><br>
+&nbsp;&nbsp; <font color=666666 style="font-size: 9pt"><?=cut_str($data[memo],100);?><br>
+&nbsp;&nbsp; <font color=444444 style="font-size: 9pt"><?=$table_title?></font>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <font color=666666 style="font-size: 9pt">(</font><font color=blue style="font-size: 9pt"><?=date("Y-m-d H:i:s",$data[reg_date])?></font> / <font color=green style="font-size: 9pt"><?=$data[ip]?>)</font>&nbsp;&nbsp;
 
 <img src=bbs/images/t.gif border=0 height=20><Br>
 
 <?
+				}
 			}
 			mysql_free_result($result);
 
-			/// ÄÚ¸àÆ®
+			/// ì½”ë©˜íŠ¸
 			if($comment_search) {
 				$result=mysql_query("select * from $t_comment"."_$table_name $s_que1", $connect) or error(mysql_error());
 ?>
 
 <br><Br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="../images/lastnode.gif"> <a href=bbs/zboard.php?id=<?=$table_name?> target=_self><font  size="2" style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇ</b> ÀÇ °£´ÜÇÑ ´ä±Û</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="../images/lastnode.gif"> <a href=bbs/zboard.php?id=<?=$table_name?> target=_self><font  size="2" style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒ</b> ì˜ ê°„ë‹¨í•œ ë‹µê¸€</font></a>
 <br>
 <?
 				while($data=mysql_fetch_array($result)) {
@@ -175,16 +198,16 @@ if($keyword&&$s_que ) {
 		}
 	}
 }
-else{
+if($rows==0){
 ?>
 			<tr>
-				<td><p class="search_result" style="margin-left:30px;" align="left"><font style="color:#d70000">''</font>¿¡ ´ëÇÑ °Ë»ö°á°ú°¡ ¾ø½À´Ï´Ù.<br>
-´Ü¾îÀÇ Ã¶ÀÚ°¡ Á¤È®ÇÑÁö È®ÀÎÇØ º¸¼¼¿ä.<br>
-ÇÑ±ÛÀ» ¿µ¾î·Î È¤Àº ¿µ¾î¸¦ ÇÑ±Û·Î ÀÔ·ÂÇß´ÂÁö È®ÀÎÇØ º¸¼¼¿ä.<br>
-°Ë»ö¾îÀÇ ´Ü¾î ¼ö¸¦ ÁÙÀÌ°Å³ª, º¸´Ù ÀÏ¹İÀûÀÎ °Ë»ö¾î·Î ´Ù½Ã °Ë»öÇØ º¸¼¼¿ä.<br>
-µÎ ´Ü¾î ÀÌ»óÀÇ °Ë»ö¾îÀÎ °æ¿ì, ¶ç¾î¾²±â¸¦ È®ÀÎÇØ º¸¼¼¿ä.<br>
-°Ë»ö ¿É¼ÇÀ» º¯°æÇØ¼­ ´Ù½Ã °Ë»öÇØ º¸¼¼¿ä.</p></td>
-			</tr>
+				<td valign="top"><p class="search_result" style="margin-left:30px;" align="left"><font style="color:#d70000">'<?=$keyword;?>'</font>ì— ëŒ€í•œ ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.<br>
+ë‹¨ì–´ì˜ ì² ìê°€ ì •í™•í•œì§€ í™•ì¸í•´ ë³´ì„¸ìš”.<br>
+í•œê¸€ì„ ì˜ì–´ë¡œ í˜¹ì€ ì˜ì–´ë¥¼ í•œê¸€ë¡œ ì…ë ¥í–ˆëŠ”ì§€ í™•ì¸í•´ ë³´ì„¸ìš”.<br>
+ê²€ìƒ‰ì–´ì˜ ë‹¨ì–´ ìˆ˜ë¥¼ ì¤„ì´ê±°ë‚˜, ë³´ë‹¤ ì¼ë°˜ì ì¸ ê²€ìƒ‰ì–´ë¡œ ë‹¤ì‹œ ê²€ìƒ‰í•´ ë³´ì„¸ìš”.<br>
+ë‘ ë‹¨ì–´ ì´ìƒì˜ ê²€ìƒ‰ì–´ì¸ ê²½ìš°, ë„ì–´ì“°ê¸°ë¥¼ í™•ì¸í•´ ë³´ì„¸ìš”.<br>
+ê²€ìƒ‰ ì˜µì…˜ì„ ë³€ê²½í•´ì„œ ë‹¤ì‹œ ê²€ìƒ‰í•´ ë³´ì„¸ìš”.</p></td>
+			</tr>			
 <?
 }
 if($connect != null) {
@@ -192,19 +215,61 @@ if($connect != null) {
 	$connect="";
 }
 ?>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="250" valign="top">
+			<table width="100%" cellpadding=0 cellspacing=0 class="rank_table" style="margin-top:10px;margin-bottom:10px;">
+			<tr><td>
+				<table id="recent_table" name="recent_table" width="100%" cellpadding=0 cellspacing=0>
+					<tr>
+						<td colspan=3 class="rank_title" style="background-color:#4a7dcb;"><p style="margin-left:10px">ìµœê·¼ ì¸ê¸° ê²€ìƒ‰ì–´</p></td>
+					</tr>
+<?
+	for($i=0;$i<10;$i++){
+	echo "<tr>
+				<td id=\"recent_no".($i)."\" name=\"recent_no".($i)."\" class=\"rank\" style=\"text-align:center;width:30px;\"></td>
+				<td id=\"recent_keyword".($i)."\" name=\"recent_keyword".($i)."\" class=\"rank\" style=\"padding-left:5px;cursor:hand;\" onclick=\"getValue(this.id)\"></td>
+				<td id=\"recent_rank".($i)."\" name=\"recent_rank".($i)."\" class=\"rank\" style=\"text-align:center\"></td>
+			</tr>";
+	}
+?>
+				</table>
+			</td></tr>
+			</table>
+			<table width="100%" cellpadding=0 cellspacing=0 class="rank_table" style="margin-top:10px;margin-bottom:10px;">
+			<tr><td>
+				<table id="total_table" name="total_table" width="100%" cellpadding=0 cellspacing=0>
+					<tr>
+						<td colspan=3 class="rank_title" style="background-color:#4a7dcb;"><p style="margin-left:10px">ì¢…í•© ì¸ê¸° ê²€ìƒ‰ì–´</p></td>
+					</tr>
+<?
+	for($i=0;$i<10;$i++){
+	echo "<tr>
+				<td id=\"total_no".($i)."\" name=\"total_no".($i)."\" class=\"rank\" style=\"text-align:center;width:30px;\"></td>
+				<td id=\"total_keyword".($i)."\" name=\"total_keyword".($i)."\" class=\"rank\" style=\"padding-left:5px;cursor:hand;\" onclick=\"getValue(this.id)\"></td>
+				<td id=\"total_rank".($i)."\" name=\"total_rank".($i)."\" class=\"rank\" style=\"text-align:center\"></td>
+			</tr>";
+	}
+?>
+				</table>
+			</td></tr>
 			</table>
 		</td>
 	</tr>
+</table>
+<table id="search_bottom" width="100%" height="50" border="0" cellpadding="0" cellspacing="0" align=center>
 	<tr height="2">
-		<td colspan="4" valign=top background="images/bottom_bg.gif"></td>
+		<td valign=top background="images/bottom_bg.gif"></td>
 	</tr>
 	<tr>
-		<td valign=top><p class="bottommenu" align=center>ÀÌ¿ë¾à°ü&nbsp;&nbsp;&nbsp;°³ÀÎÁ¤º¸Ãë±Ş¹æÄ§&nbsp;&nbsp;&nbsp;ÀÌ¸ŞÀÏ¹«´Ü¼öÁı°ÅºÎ&nbsp;&nbsp;&nbsp;Ã»¼Ò³âÁ¤Ã¥</p></td>
+		<td valign=top><p class="bottommenu" align=center>ì´ìš©ì•½ê´€&nbsp;&nbsp;&nbsp;ê°œì¸ì •ë³´ì·¨ê¸‰ë°©ì¹¨&nbsp;&nbsp;&nbsp;ì´ë©”ì¼ë¬´ë‹¨ìˆ˜ì§‘ê±°ë¶€&nbsp;&nbsp;&nbsp;ì²­ì†Œë…„ì •ì±…</p></td>
 	</tr>
 </table>
-<table border="0" cellpadding="0" cellspacing="0" height="100%">
-<tr><td></td></tr>
-</table>
-
+<form id="link" name="link" method="POST">
+<input id="keyword" name="keyword" type=hidden>
+</form>
+<iframe id="rankFrame" src="search_rank.php" style="border-width:0px;width:0px;height:0px;cellpadding:0px;cellspacing:0px;">
 </body>
 </html>

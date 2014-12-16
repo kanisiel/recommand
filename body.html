@@ -2,6 +2,15 @@
 <head>
 <title>본문</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+function getValue(id){
+	var x=document.getElementById(id);
+	var form=document.getElementById("link");
+	var input=form.keyword;
+	input.value=x.innerHTML;
+	form.submit();
+  }
+</script>
 <link href="css/fonts.css" media="all" rel="stylesheet" »
       type="text/css" />
 <? 
@@ -48,19 +57,59 @@
 		<td colspan="4" valign=top>
 			<table id="body" width="100%" border="0" cellpadding="0" cellspacing="5" style="margin-top:20px">
 			<tr height="250">
-				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "베스트", "best", 10, 30) ?></td>
-				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "한식맛집 추천", "korean_food", 10, 30) ?></td>
+				<td valign=top style="margin:4px;"><? print_bbs_recommand("3_color/bbs_blue", "베스트", "best", 10, 30) ?></td>
+				<td valign=top style="margin:4px;"><? print_bbs_recommand("3_color/bbs_blue", "한식맛집 추천", "korean_food", 10, 30) ?></td>
 				<td rowspan="2" width="250" valign=top>
 					<table id="index_right" width="250" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 					<td style="border-style:solid;border-width:2px;border-radius:8px;" bgcolor="#f0f0f0"><? print_outlogin("naverstyle","1","10"); ?></td>
 					</tr>
+					<tr>
+					<td>
+					<table width="100%" cellpadding=0 cellspacing=0 class="rank_table" style="margin-top:10px;margin-bottom:10px;">
+						<tr><td>
+							<table id="recent_table" name="recent_table" width="100%" cellpadding=0 cellspacing=0>
+								<tr>
+									<td colspan=3 class="rank_title" style="background-color:#4a7dcb;"><p style="margin-left:10px">최근 인기 검색어</p></td>
+								</tr>
+								<?
+									for($i=0;$i<10;$i++){
+									echo "<tr>
+												<td id=\"recent_no".($i)."\" name=\"recent_no".($i)."\" class=\"rank\" style=\"text-align:center;width:30px;\"></td>
+												<td id=\"recent_keyword".($i)."\" name=\"recent_keyword".($i)."\" class=\"rank\" style=\"padding-left:5px;cursor:hand;\" onclick=\"getValue(this.id)\"></td>
+												<td id=\"recent_rank".($i)."\" name=\"recent_rank".($i)."\" class=\"rank\" style=\"text-align:center\"></td>
+											</tr>";
+									}
+								?>
+							</table>
+						</td></tr>
+					</table>
+					<table width="100%" cellpadding=0 cellspacing=0 class="rank_table" style="margin-top:10px;margin-bottom:10px;">
+						<tr><td>
+							<table id="total_table" name="total_table" width="100%" cellpadding=0 cellspacing=0>
+								<tr>
+									<td colspan=3 class="rank_title" style="background-color:#4a7dcb;"><p style="margin-left:10px">종합 인기 검색어</p></td>
+								</tr>
+								<?
+									for($i=0;$i<10;$i++){
+									echo "<tr>
+												<td id=\"total_no".($i)."\" name=\"total_no".($i)."\" class=\"rank\" style=\"text-align:center;width:30px;\"></td>
+												<td id=\"total_keyword".($i)."\" name=\"total_keyword".($i)."\" class=\"rank\" style=\"padding-left:5px;cursor:hand;\" onclick=\"getValue(this.id)\"></td>
+												<td id=\"total_rank".($i)."\" name=\"total_rank".($i)."\" class=\"rank\" style=\"text-align:center\"></td>
+											</tr>";
+									}
+								?>
+							</table>
+						</td></tr>
+					</table>
+					</td>
+					</tr>
 					</table>
 				</td>
 			</tr>
 			<tr height="250">
-				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "한국영화 추천", "korean_movie", 10, 30) ?></td>
-				<td valign=top style="margin:4px;"><? print_bbs("3_color/bbs_blue", "외국도서 추천", "foreign_book", 10, 30) ?></td>
+				<td valign=top style="margin:4px;"><? print_bbs_recommand("3_color/bbs_blue", "한국영화 추천", "korean_movie", 10, 30) ?></td>
+				<td valign=top style="margin:4px;"><? print_bbs_recommand("3_color/bbs_blue", "외국도서 추천", "foreign_book", 10, 30) ?></td>
 			</tr>
 			</table>
 		</td>
@@ -72,4 +121,8 @@
 		<td valign=top><p class="bottommenu" align=center>이용약관&nbsp;&nbsp;&nbsp;개인정보취급방침&nbsp;&nbsp;&nbsp;이메일무단수집거부&nbsp;&nbsp;&nbsp;청소년정책</p></td>
 	</tr>
 </table>
+<form id="link" name="link" method="post" action="search.php">
+<input id="keyword" name="keyword" type=hidden>
+</form>
+<iframe id="rankFrame" src="search_rank.php" style="border-width:0px;width:0px;height:0px;cellpadding:0px;cellspacing:0px;">
 </body>

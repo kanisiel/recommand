@@ -35,6 +35,11 @@
     url("fonts/NanumBrush.woff") format("woff");
  }
  .topmenu { font-family: "나눔펜글씨"; color:#4a7dcb; font-size:20pt; }
- .search { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:25pt; }
- .bodymenu { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:36pt; }
- .bottommenu { font-family: "나눔펜글씨"; color:#4a7dcb; font-size:18pt; }
+ .search { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:20pt; }
+ .bodymenu { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:20pt; }
+ .bottommenu { font-family: "나눔펜글씨"; color:#4a7dcb; font-size:15pt; }
+ .search_result	{ font-family: "나눔펜글씨"; color:#444444; font-size:15pt; }
+ .search_button { font-family: "나눔펜글씨"; color:#FFFFFF; font-size:20pt; }
+ #keyword	{ font-family: "나눔펜글씨"; color:#444444; font-size:15pt;	}
+ .rank	{ font-family: "나눔펜글씨"; color:#444444; font-size:15pt; }
+ .rank_title	{ font-family: "나눔펜글씨"; color:#FFFFFF; font-size:20pt;	}
